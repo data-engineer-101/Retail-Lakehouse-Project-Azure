@@ -1,0 +1,78 @@
+# =============================================================================
+#  .gitignore — Retail Lakehouse Project (Azure + Databricks)
+# =============================================================================
+
+
+# -----------------------------------------------------------------------------
+# 🔐 Secrets & Credentials
+# Never commit these — use Databricks Secret Scope (retail-secrets) instead
+# -----------------------------------------------------------------------------
+
+# Local stream generator secrets (contains EH_CONNECTION_STRING)
+input_requirements'/.env
+.env
+
+# Databricks CLI config (stores your PAT token)
+.databrickscfg
+
+# Azure CLI session
+.azure/
+
+
+# -----------------------------------------------------------------------------
+# 📦 Source Data (75MB+ — lives in ADLS not Git)
+# -----------------------------------------------------------------------------
+
+# Primary batch dataset
+input_requirements'/retail_dataset.csv
+
+
+# -----------------------------------------------------------------------------
+# 📓 Databricks Notebook Artifacts
+# -----------------------------------------------------------------------------
+
+# Jupyter auto-save checkpoints
+.ipynb_checkpoints/
+databricks_files/.ipynb_checkpoints/
+
+# Databricks export archives (binary — re-export from workspace as needed)
+databricks_files/*.dbc
+
+# Databricks workspace config
+.databricks/
+
+
+# -----------------------------------------------------------------------------
+# 🔥 Spark / Delta Lake Local Run Artifacts
+# Generated when notebooks run locally or via spark-submit
+# -----------------------------------------------------------------------------
+spark-warehouse/
+derby.log
+metastore_db/
+checkpoint/
+checkpoints/
+_delta_log/
+_SUCCESS
+_committed_*
+_started_*
+*.crc
+
+
+# -----------------------------------------------------------------------------
+# ☁️  Azure Service Artifacts
+# -----------------------------------------------------------------------------
+
+# Stream Analytics local test output
+ASALocalRun/
+TestRunOutput/
+
+# Azure Storage Emulator (local dev only)
+__blobstorage__/
+__queuestorage__/
+
+
+# -----------------------------------------------------------------------------
+# 📋 Output Documents (auto-generated / exported — not source)
+# -----------------------------------------------------------------------------
+output/*.docx
+output/*.pages
